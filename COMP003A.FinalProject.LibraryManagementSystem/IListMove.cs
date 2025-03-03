@@ -1,8 +1,8 @@
 ﻿namespace COMP003A.FinalProject.LibraryManagementSystem
 {
-    public interface IListMove<Book>
+    public interface IListMover<Book>
     {
-        void MoveItem(Book books, List<Book> ownedBooks, List<Book> unavailableBooks);
+        void Move(Book books, List<Book> ownedBooks, List<Book> unavailableBooks);
         
     }
 }

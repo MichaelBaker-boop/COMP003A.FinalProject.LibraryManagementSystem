@@ -8,6 +8,7 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
         {
             List<Book> ownedBooks = new List<Book>();
             List<Book> unavailableBooks = new List<Book>();
+            IListMover<Book> listMover = new CheckoutOrReturn<Book>();
             int menuSelection = 0;
 
             Console.WriteLine("Weclome to the library management system!");
@@ -139,19 +140,8 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                             }
                             else
                             {
-                                
-                                if (ownedBooks.Contains(rentTitle))
-                                {
-                                    unavailableBooks.Add(rentTitle);
-                                    ownedBooks.Remove(rentTitle);
-                                    Console.WriteLine("Book checked out successfullly. Please return in 2 weeks.");
-                                    break;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Book does not exist.");
-                                    break;
-                                }
+
+                                listMover.Move(rentTitle, ownedBooks, unavailableBooks);
                             }
                         }
                         break;
@@ -196,22 +186,11 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                             }
                             else
                             {
+                                listMover.Move(returning, unavailableBooks, ownedBooks);
                                 break;
                             }
                         }
-                        bool remove = unavailableBooks.Contains(returning);
-                        if (remove)
-                        {
-                            unavailableBooks.Remove(returning);
-                            ownedBooks.Add(returning);
-                            Console.WriteLine("Book returned successfully!");
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Book does not exist.");
-                            break;
-                        }
+                        
                         break;
                     case 5:
                         Console.WriteLine("Now displaying all books currently available: ");

@@ -1,8 +1,8 @@
 ﻿namespace COMP003A.FinalProject.LibraryManagementSystem
 {
-    public abstract class CheckoutOrReturn<Book> : IListMove<Book>
+    public class CheckoutOrReturn<Book> : IListMover<Book>
     {
-        public void MoveItem(Book books, List<Book> ownedBooks, List<Book> unavailableBooks)
+        public void Move(Book books, List<Book> ownedBooks, List<Book> unavailableBooks)
         {
             if (ownedBooks.Contains(books))
             {
