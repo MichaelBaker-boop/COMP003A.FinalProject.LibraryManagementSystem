@@ -110,7 +110,7 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                                 }
                                 break;
                             }
-                            
+
                         }
                         break;
 
@@ -165,8 +165,22 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                             }
                         }
                         break;
-
                     case 5:
+                        Console.WriteLine("Now displaying all books currently available: ");
+                        foreach (var books in ownedBooks)
+                        {
+                            Console.WriteLine($"{books.Title}, {books.Author}, {books.ISBN}");
+                        }
+                        break;
+                    case 6:
+                        Console.WriteLine("Now displaying all books currently available: ");
+                        foreach (var books in unavailableBooks)
+                        {
+                            Console.WriteLine($"{books.Title}, {books.Author}, {books.ISBN}");
+                        }
+                        break;
+
+                    case 7:
                         Console.WriteLine("Have a good day!");
                         menu = false;
                         break;
