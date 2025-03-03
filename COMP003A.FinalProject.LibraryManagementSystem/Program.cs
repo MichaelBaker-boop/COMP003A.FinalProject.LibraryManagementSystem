@@ -115,30 +115,6 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                         break;
 
                     case 3:
-                        Console.WriteLine("You are currently returning a book");
-                        validInput = false;
-                        while (!validInput)
-                        {
-                            Console.WriteLine("Enter the title of the book: ");
-                            string bookTitle = Console.ReadLine();
-                            if (string.IsNullOrEmpty(bookTitle))
-                            {
-                                Console.WriteLine("Title cannot be empty. Please try again.");
-                            }
-                            else
-                            {
-
-                                int index = unavailableBooks.FindIndex(x => x.Equals(bookTitle));
-                                if (index != -1)
-                                {
-                                    unavailableBooks.Remove(bookTitle);
-                                    ownedBooks.Add(bookTitle);
-                                }
-                            }
-                        }
-                        break;
-
-                    case 4:
                         Console.WriteLine("You are currently checking out a book");
                         validInput = false;
                         while (!validInput)
@@ -157,6 +133,34 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                                 {
                                     unavailableBooks.Add(bookTitle);
                                     ownedBooks.Remove(bookTitle);
+                                    Console.WriteLine("Book checked out successfullly. Please return in 2 weeks.");
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+
+                    case 4:
+                        Console.WriteLine("You are currently returning a book");
+                        validInput = false;
+                        while (!validInput)
+                        {
+                            Console.WriteLine("Enter the title of the book: ");
+                            string bookTitle = Console.ReadLine();
+                            if (string.IsNullOrEmpty(bookTitle))
+                            {
+                                Console.WriteLine("Title cannot be empty. Please try again.");
+                            }
+                            else
+                            {
+
+                                int index = unavailableBooks.FindIndex(x => x.Equals(bookTitle));
+                                if (index != -1)
+                                {
+                                    unavailableBooks.Remove(bookTitle);
+                                    ownedBooks.Add(bookTitle);
+                                    Console.WriteLine("Book returned successfully!");
+                                    break;
                                 }
                             }
                         }
