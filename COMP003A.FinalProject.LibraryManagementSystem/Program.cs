@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace COMP003A.FinalProject.LibraryManagementSystem
 {
@@ -6,11 +7,11 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
     {
         static void Main(string[] args)
         {
-            List<Book> ownedBooks = new List<Book>();
-            List<Book> unavailableBooks = new List<Book>();
-            IListMover<Book> listMover = new CheckoutOrReturn<Book>();
+            List<PrintedBook> ownedBooks = new List<PrintedBook>();
+            List<PrintedBook> unavailableBooks = new List<PrintedBook>();
+            IListMover<PrintedBook> listMover = new ListMove<PrintedBook>();
             int menuSelection = 0;
-            Book newBook = new PrintedBook("", "", ""); // Create a new printed book object
+            PrintedBook newBook = new PrintedBook("", "", ""); // Create a new printed book object
             Console.WriteLine("Weclome to the library management system!");
             
             // Loop to keep main menu open until Exit is chosen
@@ -97,12 +98,11 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                     case 2:
                         Console.WriteLine("You are currently removing a book from the system");
                         validInput = false;
-                        Book bookTitle = new PrintedBook("", "", "");
                         while (!validInput)
                         {
                             Console.WriteLine("Enter title of book to be removed");
-                            string title = Console.ReadLine();
-                            if (string.IsNullOrEmpty(title))
+                            var bookTitle = Console.ReadLine();
+                            if (string.IsNullOrEmpty(bookTitle))
                             {
                                 Console.WriteLine("Title cannot be empty. Please try again");
                             }
@@ -110,14 +110,15 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                             {
 
                                 // checks if title is in owned books
-                                if (ownedBooks.Contains(bookTitle))
+                                if (ownedBooks.Contains(newBook))
                                 {
-                                    Console.WriteLine("Sorry, that book does not exist");
+                                    ownedBooks.Remove(newBook);
+                                    Console.WriteLine("Book removed successfully");
+                                    
                                 }
                                 else
                                 {
-                                    ownedBooks.Remove(bookTitle);
-                                    Console.WriteLine("Book removed successfully");
+                                    Console.WriteLine("Sorry, that book does not exist");
                                 }
                                 break;
                             }
@@ -127,11 +128,7 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
 
                     case 3:
                         Console.WriteLine("You are currently checking out a book");
-                        validInput = false;
-                        
-                        while (!validInput)
-                        {
-
+                     
                             Console.WriteLine("Enter the title of the book: ");
                             string title = Console.ReadLine();
                             if (string.IsNullOrEmpty(title))
@@ -141,10 +138,11 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                             else
                             {
                                 listMover.Move(newBook, ownedBooks, unavailableBooks);
-                                break;
+
                             }
+
                             
-                        }
+
                         break;
 
                     case 4:
@@ -160,37 +158,12 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                             }
                             else
                             {
-                                break;
+                                listMover.Move(newBook, ownedBooks, unavailableBooks);
+                                
                             }
+                            break;
                         }
-                        while (!validInput)
-                        {
-                            Console.WriteLine("Enter the book author: ");
-                            returningAuthor = Console.ReadLine();
-                            if (string.IsNullOrEmpty(returningAuthor))
-                            {
-                                Console.WriteLine("The author cannot be empty, please try again.");
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                        while (!validInput)
-                        {
-                            Console.WriteLine("Enter the book ISBN: ");
-                            returningISBN = Console.ReadLine();
-                            if (string.IsNullOrEmpty(returningISBN))
-                            {
-                                Console.WriteLine("The ISBN cannot be empty");
-                            }
-                            else
-                            {
-                                listMover.Move(returning, unavailableBooks, ownedBooks);
-                                break;
-                            }
-                        }
-                        
+                       
                         break;
                     case 5:
                         Console.WriteLine("Now displaying all books currently available: ");
@@ -199,11 +172,12 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                             Console.WriteLine($"{book.Title}, {book.Author}, {book.ISBN}");
                         }
                         break;
+
                     case 6:
                         Console.WriteLine("Now displaying all books currently unavailable: ");
-                        foreach (var bookss in unavailableBooks)
+                        foreach (var book in unavailableBooks)
                         {
-                            Console.WriteLine($"{bookss.Title}, {bookss.Author}, {bookss.ISBN}");
+                            Console.WriteLine($"{book.Title}, {book.Author}, {book.ISBN}");
                         }
                         break;
 
@@ -217,6 +191,7 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                         break;
     
                 }
+
             }
             
         }
