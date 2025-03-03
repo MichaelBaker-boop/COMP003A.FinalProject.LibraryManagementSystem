@@ -130,18 +130,25 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                         Console.WriteLine("You are currently checking out a book");
                      
                             Console.WriteLine("Enter the title of the book: ");
-                            string title = Console.ReadLine();
+                            var title = Console.ReadLine();
                             if (string.IsNullOrEmpty(title))
                             {
                                 Console.WriteLine("Title cannot be empty. Please try again.");
                             }
                             else
                             {
-                                listMover.Move(newBook, ownedBooks, unavailableBooks);
-
+                                if (ownedBooks.Contains(newBook))
+                                {
+                                    ownedBooks.Remove(newBook);
+                                    unavailableBooks.Add(newBook);
+                                    Console.WriteLine("Book checked out, please return in two weeks.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Bood does not exist in the system.");
+                                    break;
+                                }
                             }
-
-                            
 
                         break;
 
@@ -158,7 +165,18 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                             }
                             else
                             {
-                                listMover.Move(newBook, ownedBooks, unavailableBooks);
+                                if (unavailableBooks.Contains(newBook))
+                                {
+
+
+                                    unavailableBooks.Remove(newBook);
+                                    ownedBooks.Add(newBook);
+                                    Console.WriteLine("Book successfully returned");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Sorry, that book does not exist in the system.");
+                                }
                                 
                             }
                             break;
