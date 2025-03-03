@@ -9,8 +9,10 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
             List<Book> ownedBooks = new List<Book>();
             List<Book> unavailableBooks = new List<Book>();
             int menuSelection = 0;
-            Console.WriteLine("Weclome to the library management system!");
 
+            Console.WriteLine("Weclome to the library management system!");
+            
+            // Loop to keep main menu open until Exit is chosen
             bool menu = true;
             while (menu == true)
             {
@@ -143,6 +145,7 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                                     unavailableBooks.Add(rentTitle);
                                     ownedBooks.Remove(rentTitle);
                                     Console.WriteLine("Book checked out successfullly. Please return in 2 weeks.");
+                                    break;
                                 }
                                 else
                                 {
@@ -236,6 +239,7 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
     
                 }
             }
+            
         }
     }
 }

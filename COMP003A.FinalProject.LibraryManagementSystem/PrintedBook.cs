@@ -44,12 +44,6 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
             Console.WriteLine("Here is the book information for you: ");
         }
 
-        public override bool Equals(object? bookTitle)
-        {
-            if (GetType() != bookTitle.GetType())
-                return false;
-            PrintedBook book = (PrintedBook)bookTitle;
-            return book.BookTitle == BookTitle;
-        }
+
     }
 }
