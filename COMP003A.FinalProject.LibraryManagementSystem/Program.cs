@@ -101,13 +101,68 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                             else
                             {
 
-                                bool removal = ownedBooks.Contains(bookTitle);
-                                
-                            }
+                                int index = ownedBooks.FindIndex(x => x.Equals(bookTitle));
 
+                                if (index != 1)
+                                {
+                                    ownedBooks.Remove(bookTitle);
+                                    Console.WriteLine("Book removed successfully");
+                                }
+                                break;
+                            }
+                            
                         }
                         break;
+
                     case 3:
+                        Console.WriteLine("You are currently returning a book");
+                        validInput = false;
+                        while (!validInput)
+                        {
+                            Console.WriteLine("Enter the title of the book: ");
+                            string bookTitle = Console.ReadLine();
+                            if (string.IsNullOrEmpty(bookTitle))
+                            {
+                                Console.WriteLine("Title cannot be empty. Please try again.");
+                            }
+                            else
+                            {
+
+                                int index = unavailableBooks.FindIndex(x => x.Equals(bookTitle));
+                                if (index != -1)
+                                {
+                                    unavailableBooks.Remove(bookTitle);
+                                    ownedBooks.Add(bookTitle);
+                                }
+                            }
+                        }
+                        break;
+
+                    case 4:
+                        Console.WriteLine("You are currently checking out a book");
+                        validInput = false;
+                        while (!validInput)
+                        {
+                            Console.WriteLine("Enter the title of the book: ");
+                            string bookTitle = Console.ReadLine();
+                            if (string.IsNullOrEmpty(bookTitle))
+                            {
+                                Console.WriteLine("Title cannot be empty. Please try again.");
+                            }
+                            else
+                            {
+
+                                int index = ownedBooks.FindIndex(x => x.Equals(bookTitle));
+                                if (index != -1)
+                                {
+                                    unavailableBooks.Add(bookTitle);
+                                    ownedBooks.Remove(bookTitle);
+                                }
+                            }
+                        }
+                        break;
+
+                    case 5:
                         Console.WriteLine("Have a good day!");
                         menu = false;
                         break;
