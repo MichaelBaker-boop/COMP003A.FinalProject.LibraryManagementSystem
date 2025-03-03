@@ -10,7 +10,7 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
             List<Book> unavailableBooks = new List<Book>();
             IListMover<Book> listMover = new CheckoutOrReturn<Book>();
             int menuSelection = 0;
-
+            Book newBook = new PrintedBook("", "", ""); // Create a new printed book object
             Console.WriteLine("Weclome to the library management system!");
             
             // Loop to keep main menu open until Exit is chosen
@@ -42,7 +42,7 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                     case 1:
                         Console.WriteLine("You are currently adding a book to the system.");
                         bool validInput = false; //Initialize test of user input
-                        Book newBook = new PrintedBook("", "", ""); // Create a new printed book object
+                        
                         while (!validInput) // While loop to verify input
                         {
                             // Gets title of book to add to system
@@ -128,7 +128,7 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                     case 3:
                         Console.WriteLine("You are currently checking out a book");
                         validInput = false;
-                        Book rentTitle = new PrintedBook("", "", "");
+                        
                         while (!validInput)
                         {
 
@@ -140,21 +140,21 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                             }
                             else
                             {
-
-                                listMover.Move(rentTitle, ownedBooks, unavailableBooks);
+                                listMover.Move(newBook, ownedBooks, unavailableBooks);
+                                break;
                             }
+                            
                         }
                         break;
 
                     case 4:
                         Console.WriteLine("You are currently returning a book");
                         validInput = false;
-                        Book returning = new PrintedBook("", "", "");
                         while (!validInput) // While loop to verify input
                         {
                             Console.Write("Enter the title of the book: ");
-                            returning.Title = Console.ReadLine();
-                            if (string.IsNullOrEmpty(returning.Title))
+                            string returning = Console.ReadLine();
+                            if (string.IsNullOrEmpty(returning))
                             {
                                 Console.WriteLine("The title cannot be empty. Please try again.");
                             }
@@ -166,8 +166,8 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                         while (!validInput)
                         {
                             Console.WriteLine("Enter the book author: ");
-                            returning.Author = Console.ReadLine();
-                            if (string.IsNullOrEmpty(returning.Author))
+                            returningAuthor = Console.ReadLine();
+                            if (string.IsNullOrEmpty(returningAuthor))
                             {
                                 Console.WriteLine("The author cannot be empty, please try again.");
                             }
@@ -179,8 +179,8 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                         while (!validInput)
                         {
                             Console.WriteLine("Enter the book ISBN: ");
-                            returning.ISBN = Console.ReadLine();
-                            if (string.IsNullOrEmpty(returning.ISBN))
+                            returningISBN = Console.ReadLine();
+                            if (string.IsNullOrEmpty(returningISBN))
                             {
                                 Console.WriteLine("The ISBN cannot be empty");
                             }
@@ -194,16 +194,16 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                         break;
                     case 5:
                         Console.WriteLine("Now displaying all books currently available: ");
-                        foreach (var books in ownedBooks)
+                        foreach (var book in ownedBooks)
                         {
-                            Console.WriteLine($"{books.Title}, {books.Author}, {books.ISBN}");
+                            Console.WriteLine($"{book.Title}, {book.Author}, {book.ISBN}");
                         }
                         break;
                     case 6:
                         Console.WriteLine("Now displaying all books currently unavailable: ");
-                        foreach (var books in unavailableBooks)
+                        foreach (var bookss in unavailableBooks)
                         {
-                            Console.WriteLine($"{books.Title}, {books.Author}, {books.ISBN}");
+                            Console.WriteLine($"{bookss.Title}, {bookss.Author}, {bookss.ISBN}");
                         }
                         break;
 

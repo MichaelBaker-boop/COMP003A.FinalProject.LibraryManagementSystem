@@ -2,7 +2,7 @@
 {
     public interface IListMover<Book>
     {
-        void Move(Book books, List<Book> ownedBooks, List<Book> unavailableBooks);
+        void Move(Book newBook, List<Book> ownedBooks, List<Book> unavailableBooks);
         
     }
 }
