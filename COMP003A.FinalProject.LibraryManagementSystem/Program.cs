@@ -7,17 +7,17 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
     {
         static void Main(string[] args)
         {
-            List<PrintedBook> ownedBooks = new List<PrintedBook>();
-            List<PrintedBook> unavailableBooks = new List<PrintedBook>();
-            IListMover<PrintedBook> listMover = new ListMove<PrintedBook>();
+            List<Book> ownedBooks = new List<Book>();
+            List<Book> unavailableBooks = new List<Book>();
             int menuSelection = 0;
-            PrintedBook newBook = new PrintedBook("", "", ""); // Create a new printed book object
+           
             Console.WriteLine("Weclome to the library management system!");
             
             // Loop to keep main menu open until Exit is chosen
             bool menu = true;
             while (menu == true)
             {
+                Book newBook = new PrintedBook("", "", ""); // Create a new printed book object
                 Console.WriteLine("Please choose an option: \n");
                 Console.WriteLine("1) Add a new book.");
                 Console.WriteLine("2) Remove an old book");

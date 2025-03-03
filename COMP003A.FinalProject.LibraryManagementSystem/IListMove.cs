@@ -1,8 +1,8 @@
 ﻿namespace COMP003A.FinalProject.LibraryManagementSystem
 {
-    public interface IListMover<PrintedBook>
+    public interface IListMover<Book>
     {
-        void Move(PrintedBook newBook, List<PrintedBook> ownedBooks, List<PrintedBook> unavailableBooks);
+        void Move(Book newBook, List<Book> ownedBooks, List<Book> unavailableBooks);
         
     }
 }

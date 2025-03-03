@@ -1,9 +1,9 @@
 ﻿namespace COMP003A.FinalProject.LibraryManagementSystem
 {
-    public class ListMove<PrintedBook> : IListMover<PrintedBook>
+    public class ListMove<Book> : IListMover<Book>
     {
         // Method to be implemented to move book between owned and rented
-        public void Move(PrintedBook newBook, List<PrintedBook> ownedBooks, List<PrintedBook> unavailableBooks)
+        public void Move(Book newBook, List<Book> ownedBooks, List<Book> unavailableBooks)
         {
             // For when a book is getting loaned out
             if (ownedBooks.Contains(newBook))
