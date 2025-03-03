@@ -42,6 +42,7 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                         Book newBook = new PrintedBook("", "", ""); // Create a new printed book object
                         while (!validInput) // While loop to verify input
                         {
+                            // Gets title of book to add to system
                             Console.Write("Enter the title of the book: ");
                             newBook.Title = Console.ReadLine();
                             if (string.IsNullOrEmpty(newBook.Title))
@@ -56,6 +57,7 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
 
                         while (!validInput)
                         {
+                            // Adds author to book
                             Console.WriteLine("Enter the book author: ");
                             newBook.Author = Console.ReadLine();
                             if (string.IsNullOrEmpty(newBook.Author))
@@ -70,6 +72,7 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
 
                         while (!validInput)
                         {
+                            // Adds ISBN to book
                             Console.WriteLine("Enter the book ISBN: ");
                             newBook.ISBN = Console.ReadLine();
                             if (string.IsNullOrEmpty(newBook.ISBN))
@@ -81,8 +84,9 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                                 break;
                             }
                         }
-
+                        // Checking input was successfull
                         Console.WriteLine($"{newBook.Title}, {newBook.Author}, {newBook.ISBN}");
+                        // Add newBook to list of ownedBooks
                         ownedBooks.Add(newBook);
                         Console.WriteLine("Book added successfully!\n");
                         break;
@@ -102,9 +106,8 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                             else
                             {
 
-                                bool removing = ownedBooks.Contains(bookTitle);
-
-                                if (removing)
+                                // checks if title is in owned books
+                                if (ownedBooks.Contains(bookTitle))
                                 {
                                     Console.WriteLine("Sorry, that book does not exist");
                                 }
