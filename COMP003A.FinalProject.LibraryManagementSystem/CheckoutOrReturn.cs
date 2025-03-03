@@ -2,14 +2,26 @@
 {
     public abstract class CheckoutOrReturn<Book> : IListMove<Book>
     {
-        public abstract void Checkout(Book books, List<Book> ownedBooks, List<Book> unavailableBooks);
+        public void MoveItem(Book books, List<Book> ownedBooks, List<Book> unavailableBooks)
         {
-            if (ownedBooks.Contains(Book))
+            if (ownedBooks.Contains(books))
             {
-                ownedBooks.Remove(Book)
-            
+                ownedBooks.Remove(books);
+                unavailableBooks.Add(books);
+            }
+            if (unavailableBooks.Contains(books))
+            {
+                unavailableBooks.Remove(books);
+                ownedBooks.Add(books);
+            }
+            else
+            {
+                Console.WriteLine("Sorry, that book does not exist in our system.");
             }
         }
+      
+
+
 
     }
 }
