@@ -188,14 +188,7 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                     default:
                         Console.WriteLine("Sorry, the selection must be one of the available choices. Please try again.");
                         break;
-                
-                   
-
-                        
-                        
-
-                   
-                    
+    
                 }
             }
         }
