@@ -12,7 +12,7 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
         private string _bookTitle;
         private string _bookAuthor;
         private string _bookISBN;
-
+        
 
         // Properties
         public string Title
@@ -50,6 +50,8 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
                 _bookISBN = value;
             }
         }
+
+    
 
         public abstract void DisplayBookInfo();
 

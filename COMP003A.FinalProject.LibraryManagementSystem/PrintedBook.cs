@@ -30,11 +30,13 @@ namespace COMP003A.FinalProject.LibraryManagementSystem
         /// <param name="bookTitle"></param>
         /// <param name="bookAuthor"></param>
         /// <param name="bookISBN"></param>
+        
         public PrintedBook(string bookTitle, string bookAuthor, string bookISBN)
         {
             BookTitle = bookTitle;
             BookAuthor = bookAuthor;
             BookISBN = bookISBN;
+            
         }
 
         public override void DisplayBookInfo()

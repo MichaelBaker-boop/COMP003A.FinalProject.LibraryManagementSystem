@@ -1,4 +1,6 @@
-﻿namespace COMP003A.FinalProject.LibraryManagementSystem
+﻿using System.Linq;
+
+namespace COMP003A.FinalProject.LibraryManagementSystem
 {
     internal class Program
     {
@@ -87,8 +89,38 @@
 
                     case 2:
                         Console.WriteLine("You are currently removing a book from the system");
+                        validInput = false;
+                        while (!validInput)
+                        {
+                            Console.WriteLine("Enter title of book to be removed");
+                            string bookTitle = Console.ReadLine();
+                            if (string.IsNullOrEmpty(bookTitle))
+                            {
+                                Console.WriteLine("Title cannot be empty. Please try again");
+                            }
+                            else
+                            {
 
-      
+                                bool removal = ownedBooks.Contains(bookTitle);
+                                
+                            }
+
+                        }
+                        break;
+                    case 3:
+                        Console.WriteLine("Have a good day!");
+                        menu = false;
+                        break;
+
+                    default:
+                        Console.WriteLine("Sorry, the selection must be one of the available choices. Please try again.");
+                        break;
+                
+                   
+
+                        
+                        
+
                    
                     
                 }
